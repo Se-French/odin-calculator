@@ -15,22 +15,6 @@ function divide(a, b){
     return a / b;
 }
 
-/*OPERATE FUNCTION USING AN IF...ELSE
-
-function operate(operator, num1, num2){
-    if (operator === '+'){
-        return add(num1, num2);
-    } else if (operator === '-'){
-        return subtract(num1, num2);
-    } else if (operator === '*'){
-        return multiply(num1, num2);
-    } else if (operator === '/'){
-        return divide(num1, num2);
-    }
-}
-
-*/
-//OPERATE USING A SWITCH STATEMENT
 function operate(operator, num1, num2){
     switch (operator){
         case '+':
@@ -50,4 +34,11 @@ function operate(operator, num1, num2){
     }
 }
 
-let displayValue;
+//Get the numbers to show up in the display when clicked
+let displayValue = document.getElementById('display');
+const numberButtons = document.querySelectorAll('.number');
+numberButtons.forEach(button => button.addEventListener('click', getNumber));
+
+function getNumber(event){
+    displayValue.textContent += event.target.id;
+}
