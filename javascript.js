@@ -13,14 +13,14 @@ function multiply(a, b){
 }
 
 function divide(a, b){
-    
+    let answer = a/ b;
+
     if (b === 0){
         return 'ERROR';
     } else if ( a % b === 0){
-        return a / b;
+        return answer;
     } else {
-        answer = a / b;
-        return answer.toFixed(7);
+        return parseFloat(answer.toFixed(7));
     }
 }
 
@@ -59,13 +59,19 @@ function getNumbers(event){
     if (operator == undefined){
         num1 += event.target.value;
         displayValue.textContent = num1;
+            if (num1.indexOf('.') != -1){
+                document.getElementById('decimal').disabled = true;
+            }
         //console.log('num1 = ' + num1);
     } else if (operator != undefined || num2 == ''){
         num2 += event.target.value;
         displayValue.textContent = num2;
         //console.log('num2 = ' + num2);
         startVal = operate(operator, +num1, +num2);
-        console.log('startVal = ' + startVal);
+            if (num2.indexOf('.') != -1){
+                document.getElementById('decimal').disabled = true;
+            }
+        //console.log('startVal = ' + startVal);
     } 
 }
 
@@ -77,6 +83,7 @@ let operationCount = 0;
 
 function getOperator(event){
     operator = event.target.id;
+    document.getElementById('decimal').disabled = false;
     //console.log(operator);
 
     //to string more than one operation together
@@ -87,7 +94,7 @@ function getOperator(event){
         num1 = startVal;
         num2 = '';
         displayValue.textContent = num1;
-        //console.log('new num1 = ' + num1);
+        console.log('new num1 = ' + num1);
     }
 }
 
@@ -119,7 +126,9 @@ function clearCalc(){
     startVal = undefined;
     displayValue.textContent = 0;
     operationCount = 0;
+    document.getElementById('decimal').disabled = false;
 }
+
 
 
 
