@@ -9,10 +9,19 @@ function subtract(a, b){
 
 function multiply(a, b){
     return a * b;
+    
 }
 
 function divide(a, b){
-    return a / b;
+    
+    if (b === 0){
+        return 'ERROR';
+    } else if ( a % b === 0){
+        return a / b;
+    } else {
+        answer = a / b;
+        return answer.toFixed(7);
+    }
 }
 
 function operate(operator, num1, num2){
@@ -34,36 +43,85 @@ function operate(operator, num1, num2){
     }
 }
 
-//Get the numbers to show up in the display when clicked
+//Get the display value
 let displayValue = document.getElementById('display');
-const numberButtons = document.querySelectorAll('.number');
-numberButtons.forEach(button => button.addEventListener('click', getNumber));
+displayValue.textContent = 0;
 
-function getNumber(event){
-    displayValue.textContent += event.target.id;
+//Get the numbers
+const numberButtons = document.querySelectorAll('.number');
+numberButtons.forEach(button => button.addEventListener('click', getNumbers));
+let num1 = '';
+let num2 = '';
+let startVal;
+
+function getNumbers(event){
+
+    if (operator == undefined){
+        num1 += event.target.id;
+        displayValue.textContent = num1;
+        //console.log('num1 = ' + num1);
+    } else if (operator != undefined || num2 == ''){
+        num2 += event.target.id;
+        displayValue.textContent = num2;
+        //console.log('num2 = ' + num2);
+        startVal = operate(operator, +num1, +num2);
+        //console.log('startVal = ' + startVal);
+    } 
 }
 
-//This makes the calculator work
+//Get the operator
 const operations = document.querySelectorAll('.operators');
-operations.forEach(operation => operation.addEventListener('click', createOperation));
+operations.forEach(operation => operation.addEventListener('click', getOperator));
+let operator;
+let operationCount = 0;
 
-function createOperation(event){
-    let operator = event.target.id;
-    let num1 = +(displayValue.textContent);
-    displayValue.textContent = '';
+function getOperator(event){
+    operator = event.target.id;
     //console.log(operator);
-    //console.log(num1);
-    const equals = document.getElementById('equals');
-    equals.addEventListener('click', getResult);
 
-    function getResult(event){
-        let num2 = +(displayValue.textContent);
-        //console.log(num2);
-        //console.log(operate(operator, num1, num2));
-        let solution = (operate(operator, num1, num2));
-        displayValue.textContent = solution;
+    //to string more than one operation together
+    operationCount++;
+    //console.log('count = ' + operationCount);
+
+    if (operationCount > 1){
+        num1 = startVal;
+        num2 = '';
+        displayValue.textContent = num1;
+        //console.log('new num1 = ' + num1);
     }
 }
+
+//Get the result
+const equals = document.getElementById('equals');
+equals.addEventListener('click', getResult);
+
+function getResult(){
+
+    if(num1 == '' && num2 == ''){
+        displayValue.textContent = '';
+    } else if (num1 != '' && num2 == ''){
+        displayValue.textContent = num1;
+    } else if (num1 != '' && num2 != ''){
+        let result = operate(operator, +num1, +num2);
+        //console.log(result);
+        displayValue.textContent = result;
+    }
+}
+
+//Clear all the values to start over
+const clear = document.getElementById('clear');
+clear.addEventListener('click', clearCalc);
+
+function clearCalc(){
+    num1 = '';
+    num2 = '';
+    operator = undefined;
+    startVal = undefined;
+    displayValue.textContent = 0;
+    operationCount = 0;
+}
+
+
 
 
 
