@@ -57,15 +57,15 @@ let startVal;
 function getNumbers(event){
 
     if (operator == undefined){
-        num1 += event.target.id;
+        num1 += event.target.value;
         displayValue.textContent = num1;
         //console.log('num1 = ' + num1);
     } else if (operator != undefined || num2 == ''){
-        num2 += event.target.id;
+        num2 += event.target.value;
         displayValue.textContent = num2;
         //console.log('num2 = ' + num2);
         startVal = operate(operator, +num1, +num2);
-        //console.log('startVal = ' + startVal);
+        console.log('startVal = ' + startVal);
     } 
 }
 
