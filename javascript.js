@@ -84,17 +84,14 @@ let operationCount = 0;
 function getOperator(event){
     operator = event.target.id;
     document.getElementById('decimal').disabled = false;
-    //console.log(operator);
-
     //to string more than one operation together
     operationCount++;
-    //console.log('count = ' + operationCount);
 
     if (operationCount > 1){
         num1 = startVal;
         num2 = '';
         displayValue.textContent = num1;
-        console.log('new num1 = ' + num1);
+        //console.log('new num1 = ' + num1);
     }
 }
 
@@ -105,7 +102,7 @@ equals.addEventListener('click', getResult);
 function getResult(){
 
     if(num1 == '' && num2 == ''){
-        displayValue.textContent = '';
+        displayValue.textContent = '0';
     } else if (num1 != '' && num2 == ''){
         displayValue.textContent = num1;
     } else if (num1 != '' && num2 != ''){
@@ -127,6 +124,20 @@ function clearCalc(){
     displayValue.textContent = 0;
     operationCount = 0;
     document.getElementById('decimal').disabled = false;
+}
+
+//Backspace button
+const backspace = document.getElementById('backspace');
+backspace.addEventListener('click', undo);
+
+function undo(){
+    if (num1 != '' && num2 == ''){
+        num1 = num1.slice(0, -1);
+        displayValue.textContent = num1;
+    } else if (num2 != ''){
+        num2 = num2.slice(0, -1);
+        displayValue.textContent = num2;
+    }
 }
 
 
