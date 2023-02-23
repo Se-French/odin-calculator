@@ -20,7 +20,7 @@ function divide(a, b){
     } else if ( a % b === 0){
         return answer;
     } else {
-        return parseFloat(answer.toFixed(7));
+        return parseFloat(answer.toFixed(4));
     }
 }
 
