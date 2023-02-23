@@ -1,39 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Calculator</title>
-        <script src='javascript.js' defer></script>
-    </head>
-    <body>
 
+<head>
+    <meta charset="utf-8">
+    <title>Calculator</title>
+    <script src='javascript.js' defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <h1>It's a calculator!</h1>
+
+    <div id="calculator">
         <div id="display"></div>
 
-        <div id="numbers">
-            <button class="number" value="0">0</button>
-            <button class="number" value="1">1</button>
-            <button class="number" value="2">2</button>
-            <button class="number" value="3">3</button>
-            <button class="number" value="4">4</button>
-            <button class="number" value="5">5</button>
-            <button class="number" value="6">6</button>
-            <button class="number" value="7">7</button>
-            <button class="number" value="8">8</button>
-            <button class="number" value="9">9</button>
-            <button class="number" value="." id="decimal">.</button>
-        </div>
+        <div id="main">
+            <div id="numbers">
+                <button class="number" value="9">9</button>
+                <button class="number" value="8">8</button>
+                <button class="number" value="7">7</button>
+                <button class="number" value="6">6</button>
+                <button class="number" value="5">5</button>
+                <button class="number" value="4">4</button>
+                <button class="number" value="3">3</button>
+                <button class="number" value="2">2</button>
+                <button class="number" value="1">1</button>
+                <button class="number" value="0">0</button>
+                <button class="number" value="." id="decimal">.</button>
+                <button id="backspace">DEL</button>
+            </div>
 
-        <div id="operators">
-            <button class="operators" id="add">+</button>
-            <button class="operators" id="subtract">-</button>
-            <button class="operators" id="multiply">x</button>
-            <button class="operators" id="divide">/</button>
+            <div id="operators">
+                <button class="operators" id="add">+</button>
+                <button class="operators" id="subtract">-</button>
+                <button class="operators" id="multiply">x</button>
+                <button class="operators" id="divide">/</button>
+            </div>
         </div>
 
         <div id="result">
-            <button id="equals">=</button>
             <button id="clear">clear</button>
-            <button id="backspace">backspace</button>
+            <button id="equals">=</button>
         </div>
-    </body>
+    </div>
+</body>
+
 </html>
