@@ -1,4 +1,4 @@
-//Functions for different operations
+//Functions for the different operations
 function add(a, b){
     return a + b;
 }
@@ -140,8 +140,59 @@ function undo(){
     }
 }
 
+//Keyboard support
+document.addEventListener('keydown', addKeyboardSupport);
+let key = '';
 
+function addKeyboardSupport (event){
+    if (event.key >= 0 && event.key <=9){
+        if (operator == undefined){
+            num1 += event.key;
+            displayValue.textContent = num1;
+        } else if (operator != undefined || num2 == ''){
+            num2 += event.key;
+            displayValue.textContent = num2;
+            startVal = operate(operator, +num1, +num2);
+        }
+    }
+    if (event.key == '=' || event.key == 'Enter') getResult();
+    if (event.key == 'Backspace') undo();
+    if (event.key == 'Delete') clearCalc();
+    if (event.key == '.' && operator == undefined){
+        if (num1.indexOf('.') == -1){
+            num1 = num1 + '.';
+        }
+    } else if (event.key == '.' && operator != undefined){
+        if (num2.indexOf('.') == -1){
+            num2 = num2 + '.';
+        }
+    }
+    if (event.key == '+' || event.key == '-' || event.key == '*' 
+            || event.key == '/'){
+                key = event.key;
+                getKeyOperator(event);
+            }
+}
 
+function getKeyOperator(){
+    if (key == '+'){
+        operator = 'add';
+    } else if (key == '-'){
+        operator = 'subtract';
+    } else if (key == '*'){
+        operator = 'multiply'
+    } else if (key == '/'){
+        operator = 'divide';
+    }
 
+    operationCount++;
+    console.log('count = ' + operationCount);
 
+    if (operationCount > 1){
+        num1 = startVal;
+        num2 = '';
+        startVal = undefined;
+        displayValue.textContent = num1;
+    }
+}
 
