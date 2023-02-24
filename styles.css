@@ -21,6 +21,7 @@ h1 {
 
 #display {
     height: 70px;
+    overflow: hidden;
     font-size: 60px;
     display: flex;
     justify-content: end;
