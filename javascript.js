@@ -62,16 +62,13 @@ function getNumbers(event){
             if (num1.indexOf('.') != -1){
                 document.getElementById('decimal').disabled = true;
             }
-        //console.log('num1 = ' + num1);
     } else if (operator != undefined || num2 == ''){
         num2 += event.target.value;
         displayValue.textContent = num2;
-        //console.log('num2 = ' + num2);
         startVal = operate(operator, +num1, +num2);
             if (num2.indexOf('.') != -1){
                 document.getElementById('decimal').disabled = true;
             }
-        //console.log('startVal = ' + startVal);
     } 
 }
 
@@ -84,14 +81,12 @@ let operationCount = 0;
 function getOperator(event){
     operator = event.target.id;
     document.getElementById('decimal').disabled = false;
-    //to string more than one operation together
-    operationCount++;
+    operationCount++; //to string more than one operation together
 
     if (operationCount > 1){
         num1 = startVal;
         num2 = '';
         displayValue.textContent = num1;
-        //console.log('new num1 = ' + num1);
     }
 }
 
@@ -107,7 +102,6 @@ function getResult(){
         displayValue.textContent = num1;
     } else if (num1 != '' && num2 != ''){
         let result = operate(operator, +num1, +num2);
-        //console.log(result);
         displayValue.textContent = result;
     }
 }
@@ -191,7 +185,6 @@ function getKeyOperator(){
     if (operationCount > 1){
         num1 = startVal;
         num2 = '';
-        startVal = undefined;
         displayValue.textContent = num1;
     }
 }
